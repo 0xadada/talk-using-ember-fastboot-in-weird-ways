@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Using Ember FastBoot in Weird Ways</title>
+    <link rel="stylesheet" href="https://mirai.audio/system-font-i18n-css/system-font-i18n.css">
+    <style>
+      html,
+      body {
+        font-family: system-sans-serif,
+          system-gothic,
+          sans-serif,
+          "Twitter Color Emoji", "Apple Color Emoji", "Segoe UI Emoji";
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 { font-size: 5rem; }
+      h2 { font-size: 3rem; }
+      h3 { font-size: 2rem; }
+      h4 { font-size: 4rem; }
+      h5 { font-size: 3rem; }
+      h6 { font-size: 2.5rem; }
+
+      p,
+      li { font-size: 2rem; }
+
+      a:link,
+      a:visited {
+        color: black;
+      }
+
+      img { max-width: 100%; }
+
+      .slide {
+        height: 100vh;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .slide:nth-child(2n+1) {
+        background-color: black;
+        border: 1rem solid white;
+        color: white;
+        height: calc(100vh - 2rem);
+      }
+      .slide:nth-child(2n+1) a:link,
+      .slide:nth-child(2n+1) a:visited {
+        color:white;
+      }
+
+      .center { text-align: center; }
+
+      .slide-speedlines {
+        background-image: url('speed-lines.gif');
+        background-size: 110vw 110vh;
+      }
+    </style>
+  </head>
+  <body>
+    <article class="slide center slide-speedlines">
+      <h1>
+        Using Ember FastBoot
+        <br>
+        in Weird Ways</h1>
+      <h2>
+        by
+        <a href="https://twitter.com/0xadada" rel="me external noopener">0xADADA</a>
+      </h2>
+      <p>
+        <a
+          href="https://www.meetup.com/Boston-Ember-js-Community/events/261908863/"
+          rel="external noopener">Boston Ember Community</a>, June 18th 2019
+      </p>
+    </article>
+
+    <article class="slide" id=2>
+      <img src="avatar.svg" alt="0xADADA avatar" height="128">
+      <h1>About me</h1>
+      <ul>
+        <li>pronunciation: zɪroʊ ɛks ə di ə di eɪ</li>
+        <li>Principal Software Engineer at Salsify, Inc.</li>
+        <li>0xADADA on Twitter, GitHub, everywhere.</li>
+        <li>https://0xadada.pub is my internet house</li>
+        <li>Using Ember for ~three years</li>
+        <li>hecklers welcome 👺</li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <h1>Agenda</h1>
+      <ol>
+        <li>Review of web app architectures</li>
+        <li>Introduce Ember FastBoot</li>
+        <li>Introduce our app &amp; usecase</li>
+        <li>How we use FastBoot</li>
+        <li>Questions?</li>
+      </ol>
+    </article>
+
+    <article class="slide">
+        <h1>Review of web app architectures</h1>
+    </article>
+
+    <article class="slide">
+      <h1>Traditional app architecture</h1>
+      <ul>
+        <li>PHP/Java/Ruby app server</li>
+        <li>Renders static HTML to the browser</li>
+        <li>Ad-hoc client JavaScript for interactivity</li>
+      </ul>
+      <img src="arch-web-trad.png" alt="traditional web architecture">
+    </article>
+
+    <article class="slide">
+      <h1>Single-page app architecture, aka "SPA"</h1>
+      <ul>
+        <li>PHP/Java/Ruby app API server</li>
+        <li>Renders static HTML shell w/o content to the browser</li>
+        <li>Client JavaScript framework renders the UI in DOM</li>
+      </ul>
+      <img src="arch-web-spa.png" alt="SPA web architecture">
+    </article>
+
+    <article class="slide">
+      <h1>Server-side render/Single-page app architecture</h1>
+      <ul>
+        <li>PHP/Java/Ruby app API server</li>
+        <li>Renders static HTML w/content to the browser</li>
+        <li>Client runs JavaScript framework to render subsequent pages</li>
+      </ul>
+      <img src="arch-web-ssrspa.png" alt="SSR/SPA web architecture">
+    </article>
+
+    <article class="slide" id=4>
+      <h1>Introducing Ember FastBoot</h1>
+    </article>
+
+    <article class="slide" id=3>
+      <iframe
+        src="https://ember-fastboot.com/"
+        frameborder=0 scrolling="no"
+        style="width: 90vw; height: 90vh"></iframe>
+    </article>
+
+    <article class="slide">
+      <h1>What is Ember FastBoot</h1>
+      <ul>
+        <li>Server-side rendering app server, aka "SSR"</li>
+        <li>Runs on Node/Express.js</li>
+        <li>Brings one aspect of progressive enhancement to your Ember app</li>
+      </ul>
+    </article>
+
+     <article class="slide">
+      <h1>Why Server-side rendering?</h1>
+      <ul>
+        <li>Improves search indexing and crawlability</li>
+        <li>Faster load times</li>
+        <li>Enables standard caching strategies</li>
+        <li>Works without JavaScript or <em>where JavaScript is restricted</em></li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <h1>Introduce our usecase</h1>
+    </article>
+
+    <article class="slide">
+      <h1>Salsify Enhanced Content</h1>
+      <img src="enhanced-content.webp" alt="Salsify composer screenshot">
+    </article>
+
+    <article class="slide">
+      <h1>Enhanced Content</h1>
+      <ul>
+        <li>Client: The visual editor; Ember.js</li>
+        <li>API server: Fetches product lists and data; Ruby on Rails</li>
+        <li>SSR FastBoot server: accepts product data an a UI template, in Ember FastBoot</li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <h1>
+        <em>where JavaScript is restricted</em>
+      </h1>
+      <p>Many online retailers allow "from the manufacturer" or "below-the-fold"
+        content— that is, content from the manufacturer describing their own
+        product. Most often this is rich marketing text, images, and video.
+      </p>
+      <ul>
+        <li>Many online retailers allow "below-the-fold" content</li>
+        <li>Mostly art-directed imagery and HTML</li>
+        <li>Mostly provided by static HTML</li>
+        <li>Mostly implemented inside an <code>iframe</code></li>
+        <li>Mostly injected onto the page by 3rd-party JavaScript</li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <h3>amazon.com</h3>
+      <img src="screen-amazon.jpg" style="float: left" alt="amazon.com screenshot">
+    </article>
+
+    <article class="slide">
+      <h1>walmart.com</h1>
+      <ul>
+        <li>Hesitant to use 3rd-party JavaScript</li>
+        <li>Hosts the content themselves</li>
+        <li>Writes our HTML directly into <code>iframe</code></li>
+        <li>Sanitize markup, and strips JavaScript*<sup>not all 🤷‍♂️</sup></li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <img src="screen-walmart.jpg" alt="walmart.com screenshot">
+    </article>
+
+    <article class="slide">
+      <h1>bjs.com</h1>
+      <ul>
+        <li>Reviews 3rd-party JavaScript</li>
+        <li>We inject an <code>iframe</code> on page</li>
+        <li><code>iframe</code> loads static HTML</li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <img src="screen-bjs.jpg" alt="bjs.com screenshot">
+    </article>
+
+    <article class="slide">
+      <h1>Constraints📦</h1>
+      <ol>
+        <li>must serve static HTML</li>
+        <li>should be heavily cached</li>
+        <li>team is efficient with Ember</li>
+        <li>app already renders these pages</li>
+      </ol>
+      <p>what would work with these constraints? 🤔</p>
+    </article>
+
+    <article class="slide">
+      <h1>Sequence of events</h1>
+      <img src="sequence.svg" alt="enhanced content sequence diagram">
+    </article>
+  </body>
+</html>
