@@ -31,6 +31,10 @@
         color: black;
       }
 
+      em {
+        text-shadow: 4px 4px 3px rgb(255, 4, 2);
+      }
+
       img { max-width: 100%; }
 
       .slide {
@@ -77,14 +81,14 @@
       </p>
     </article>
 
-    <article class="slide" id=2>
-      <img src="avatar.svg" alt="0xADADA avatar" height="128">
+    <article class="slide" id="about-me" style="position: relative">
+      <img src="avatar.svg" alt="0xADADA avatar" height="256" style="position: absolute;top: 0;left: 0;opacity: 0.25;height: 100vh;">
       <h1>About me</h1>
       <ul>
-        <li>pronunciation: zɪroʊ ɛks ə di ə di eɪ</li>
-        <li>Principal Software Engineer at Salsify, Inc.</li>
+        <li>IRL name: Ron</li>
+        <li>Engineer here at Salsify</li>
         <li>0xADADA on Twitter, GitHub, everywhere.</li>
-        <li>https://0xadada.pub is my internet house</li>
+        <li><code>https://0xadada.pub</code> is my internet house</li>
         <li>Using Ember for ~three years</li>
         <li>hecklers welcome 👺</li>
       </ul>
@@ -170,70 +174,6 @@
     </article>
 
     <article class="slide">
-      <h3>amazon.com</h3>
-      <img src="screen-amazon.jpg" style="float: left" alt="amazon.com screenshot">
-    </article>
-
-    <article class="slide">
-      <h1>walmart.com</h1>
-      <ul>
-        <li>Hesitant to use 3rd-party JavaScript</li>
-        <li>Hosts the content themselves</li>
-        <li>Writes our HTML directly into <code>iframe</code></li>
-        <li>Sanitize markup, and strips JavaScript*<sup>not all 🤷‍♂️</sup></li>
-      </ul>
-    </article>
-
-    <article class="slide">
-      <img src="screen-walmart.jpg" alt="walmart.com screenshot">
-    </article>
-
-    <article class="slide">
-      <h1>bjs.com</h1>
-      <ul>
-        <li>Reviews 3rd-party JavaScript</li>
-        <li>We inject an <code>iframe</code> on page</li>
-        <li><code>iframe</code> loads static HTML</li>
-      </ul>
-    </article>
-
-    <article class="slide">
-      <img src="screen-bjs.jpg" alt="bjs.com screenshot">
-    </article>
-    <article class="slide">
-      <h1>Salsify Enhanced Content</h1>
-      <img src="enhanced-content.webp" alt="Salsify composer screenshot">
-    </article>
-
-    <article class="slide">
-      <h1>Enhanced Content</h1>
-      <ul>
-        <li>Client: The visual template editor; Ember.js
-          <ul>
-            <li>input: curation of product lists</li>
-            <li>input: template selection, configuring and text/image edits</li>
-            <li>ouput: template UI configuration with text &amp; images</li>
-          </ul>
-        </li>
-        <li>API server: Fetches product data; Ruby on Rails
-          <ul>
-            <li>input: user curated product lists</li>
-            <li>input: template UI configuration with text &amp; images</li>
-            <li>ouput: product lists and product data</li>
-            <li>input: template UI configuration with text &amp; images</li>
-            <li>ouput: publishes static rendered HTML to Amazon S3</li>
-          </ul>
-        </li>
-        <li>SSR server: accepts product data and template data; Ember FastBoot
-          <ul>
-            <li>input: template UI configuration with text &amp; images</li>
-            <li>ouput: static rendered HTML</li>
-          </ul>
-        </li>
-      </ul>
-    </article>
-
-    <article class="slide">
       <h1>
         <em>where JavaScript is restricted</em>
       </h1>
@@ -256,40 +196,636 @@
         <li>must serve static HTML</li>
         <li>should be heavily cached</li>
         <li>team is efficient with Ember</li>
-        <li>app already renders these pages</li>
+        <li>our app already renders these layouts</li>
       </ol>
       <p>what would work with these constraints? 🤔</p>
     </article>
 
     <article class="slide">
-      <h1>Sequence of events</h1>
-      <img src="sequence.svg" alt="enhanced content sequence diagram">
+      <h3>
+        <a href="https://www.amazon.com/Chicco-NextFit-Zip-Convertible-Seat/dp/B07MP6VTKM" rel="external noopener">
+          amazon.com
+        </a>
+      </h3>
+      <img src="screen-amazon.jpg" style="float: left" alt="amazon.com screenshot">
     </article>
 
     <article class="slide">
-      <h1>Gotchas</h1>
+      <h1>
+        <a href="https://www.walmart.com/ip/Chicco-NextFit-Sport-Convertible-Car-Seat-Shadow/509228002" rel="external noopener">
+          walmart.com
+        </a>
+      </h1>
       <ul>
-        <li>Your app is now running in two runtimes, the browser and the server.</li>
-        <li>Congrats, your code may need to have branching conditions for a server runtime</li>
-        <li>FastBoot apps have no DOM, thus no jQuery, no
-          <code>document.querySelector</code>
+        <li>Hesitant to use 3rd-party JavaScript</li>
+        <li>Hosts the content themselves</li>
+        <li>Writes our HTML directly into <code>iframe</code></li>
+        <li>Sanitize markup, and strips JavaScript*<sup>not all 🤷‍♂️</sup></li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <img src="screen-walmart.jpg" alt="walmart.com screenshot">
+    </article>
+
+    <article class="slide">
+      <h1>
+        <a href="https://www.bjs.com/product/gorilla-playsets-treasure-trove-swing-set/212845" rel="external noopener">
+          bjs.com
+        </a>
+      </h1>
+      <ul>
+        <li>Reviews 3rd-party JavaScript</li>
+        <li>We inject an <code>iframe</code> on page</li>
+        <li><code>iframe</code> loads static HTML</li>
+      </ul>
+    </article>
+
+    <article class="slide">
+      <img src="screen-bjs.jpg" alt="bjs.com screenshot">
+    </article>
+    <article class="slide">
+      <h1>Salsify Enhanced Content</h1>
+      <img src="enhanced-content.webp" alt="Salsify composer screenshot">
+    </article>
+
+    <article class="slide">
+      <h1>Enhanced Content</h1>
+      <ul>
+        <li>Client: The visual template editor; Ember.js
+          <ul>
+            <li>input: user interactions</li>
+            <li>ouput: template UI config with content &amp; data bindings</li>
+          </ul>
         </li>
-        <li>Congrats, you now have a new runtime to write tests for!</li>
-        <li><code>ember-cli-fastboot-testing</code> is your new friend</li>
-        <li>Use Docker to host and deploy, it helps</li>
-        <li>Your code is now running on a server, so be aware of security
-          vulnerabilities you never before had to consider.
+        <li>API server: Fetches product data; Ruby on Rails
+          <ul>
+            <li>input: product lists, template UI config with content &amp; data bindings</li>
+            <li>ouput: rendered HTML (saved to Amazon S3)</li>
+          </ul>
+        </li>
+        <li>SSR server Renders static HTML; Ember FastBoot
+          <ul>
+            <li>input: template UI config with content &amp; data bindings</li>
+            <li>ouput: rendered HTML</li>
+          </ul>
         </li>
       </ul>
     </article>
 
     <article class="slide">
-      <h1>Resources</h1>
+      <h1>Example</h1>
+      <h2>UI data sent to FastBoot:</h2>
+      <h3>
+        <code>config</code>: The template
+        <br>
+        <code>env</code>: The content and data bindings
+      </h3>
+<code><pre>
+{
+  "config": {
+    "$vbox": [{
+        "$hbox": [{
+            "$text": "Your name: "
+          },
+          {
+            "$input": {
+              "$bind": "name"
+            }
+          }
+        ]
+      },
+      {
+        "$text": {
+          "$join": [{
+              "$bind": "greeting"
+            },
+            {
+              "$bind": "name"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "env": {
+    "greeting": "Hello, ",
+    "name": "CHANGEME"
+  }
+}
+</pre></code>
+    </article>
+
+    <article class="slide">
+      <h1>Real Example</h1>
+      <h2>(demo intensifies)</h2>
+
+<code style="overflow-y: scroll"><pre>
+{
+  "config": {
+    "class": "__salsify-enhanced-content__vbox __salsify-enhanced-content__layout-container",
+    "children": [{
+        "class": "__salsify-enhanced-content__bottom-margin",
+        "width": 970,
+        "height": 300,
+        "source": {
+          "values": [
+            null,
+            {
+              "id": "s-401b7671-e0c3-4094-a746-422f77670711",
+              "name": "Safety1st_Brand_A+Header.png",
+              "bytes": null,
+              "format": null,
+              "details": "300 x 970\n335 KB",
+              "large_url": "https://images.salsify.com/image/upload/s--Q4f9PGWO--/c_limit,cs_srgb,h_600,w_600/fvcgrldt0wqvjjh8wbem.jpg",
+              "created_at": "2018-11-07T21:24:55.698Z",
+              "detail_url": null,
+              "dimensions": null,
+              "source_url": null,
+              "external_id": "2116f14a1329bada369242f222930ab4fcc0cbf8",
+              "download_url": "https://salsify-ecdn.com/images/5e32d7a3630f6b9706c15f2f46e2e5ff.png",
+              "resource_type": "image",
+              "thumbnail_url": "https://images.salsify.com/image/upload/s--sVHi0ahW--/t_salsify_thumb/fvcgrldt0wqvjjh8wbem.jpg",
+              "property_values": [],
+              "shareable_links": [],
+              "humanized_duration": null,
+              "humanized_resource_type": "Image (PNG)"
+            }
+          ],
+          "$helper": "digital_asset_coalesce"
+        },
+        "$component": "image"
+      },
+      {
+        "class": "__salsify-enhanced-content__three-column __salsify-enhanced-content__more-space-between __salsify-enhanced-content__bottom-margin __salsify-enhanced-content__top-align",
+        "children": [{
+            "width": 300,
+            "height": 300,
+            "source": null,
+            "$component": "image"
+          },
+          {
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "level": 2,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 200
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 1000
+              },
+              {
+                "level": 2,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 200
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 400
+              }
+            ],
+            "$component": "vbox"
+          },
+          {
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "level": 2,
+                "content": "Safety 1st Power Strip",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "small",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 100
+              },
+              {
+                "size": "small",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 100
+              },
+              {
+                "size": "small",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 100
+              },
+              {
+                "size": "small",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 100
+              }
+            ],
+            "$component": "vbox"
+          }
+        ],
+        "$component": "hbox"
+      },
+      {
+        "level": 1,
+        "content": {
+          "values": [
+            null,
+            "Safety 1st Power Strip Cover"
+          ],
+          "$helper": "coalesce"
+        },
+        "$component": "header",
+        "max_char_count": 160
+      },
+      {
+        "class": "__salsify-enhanced-content__three-column __salsify-enhanced-content__more-space-between __salsify-enhanced-content__bottom-margin __salsify-enhanced-content__top-align",
+        "children": [{
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "width": 300,
+                "height": 300,
+                "source": {
+                  "values": [{
+                      "$bind": "s-f16f285b-ed59-4b34-82aa-5daada2b63a9.firstObject"
+                    },
+                    null
+                  ],
+                  "$helper": "digital_asset_coalesce"
+                },
+                "$component": "image"
+              },
+              {
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": {
+                  "values": [
+                    null,
+                    "Easily adjusts to securely enclose a full power strip."
+                  ],
+                  "$helper": "coalesce"
+                },
+                "$component": "text",
+                "max_char_count": 1000
+              }
+            ],
+            "$component": "vbox"
+          },
+          {
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "width": 300,
+                "height": 300,
+                "source": {
+                  "values": [
+                    null,
+                    {
+                      "id": "s-36235799-4a7f-48dc-a91d-6f721acf9c0d",
+                      "name": "10409_Bty.jpg",
+                      "bytes": 1049836,
+                      "format": null,
+                      "details": "2414 x 2414\n1 MB",
+                      "large_url": "https://images.salsify.com/image/upload/s--_yFqekK4--/c_limit,cs_srgb,h_600,w_600/f9umv6e7dgrjhi8xrsso.jpg",
+                      "created_at": "2015-02-18T15:00:33.127Z",
+                      "detail_url": null,
+                      "dimensions": null,
+                      "source_url": null,
+                      "external_id": "ce88b46232b2cacce49148d03b287e9d50494487",
+                      "download_url": "https://salsify-ecdn.com/images/979c0bee120618156658432c3076acf4.jpg",
+                      "resource_type": "image",
+                      "thumbnail_url": "https://images.salsify.com/image/upload/s---kslzrGC--/t_salsify_thumb/f9umv6e7dgrjhi8xrsso.jpg",
+                      "property_values": [],
+                      "shareable_links": [],
+                      "humanized_duration": null,
+                      "humanized_resource_type": "Image (JPG)"
+                    }
+                  ],
+                  "$helper": "digital_asset_coalesce"
+                },
+                "$component": "image"
+              },
+              {
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": {
+                  "values": [
+                    null,
+                    "Keeps curious kids out of power strip outlets."
+                  ],
+                  "$helper": "coalesce"
+                },
+                "$component": "text",
+                "max_char_count": 1000
+              }
+            ],
+            "$component": "vbox"
+          },
+          {
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "width": 300,
+                "height": 300,
+                "source": {
+                  "values": [
+                    null,
+                    {
+                      "id": "s-e04e3ca1-f64e-4d7c-ad74-c18673c8c13f",
+                      "name": "10409_Lifestyle.jpg",
+                      "bytes": 5086760,
+                      "format": null,
+                      "details": "2700 x 2700\n4.85 MB",
+                      "large_url": "https://images.salsify.com/image/upload/s--ooXA8IPT--/c_limit,cs_srgb,h_600,w_600/ewlft1gbo1a1pr6clac5.jpg",
+                      "created_at": "2015-02-18T15:00:14.269Z",
+                      "detail_url": null,
+                      "dimensions": null,
+                      "source_url": null,
+                      "external_id": "585bf7352998533305d36ec87973154b10ba0a2f",
+                      "download_url": "https://salsify-ecdn.com/images/19f2a92fcb678fe3fd810570e45adcff.jpg",
+                      "resource_type": "image",
+                      "thumbnail_url": "https://images.salsify.com/image/upload/s--TVEr87Kl--/t_salsify_thumb/ewlft1gbo1a1pr6clac5.jpg",
+                      "property_values": [],
+                      "shareable_links": [],
+                      "humanized_duration": null,
+                      "humanized_resource_type": "Image (JPG)"
+                    }
+                  ],
+                  "$helper": "digital_asset_coalesce"
+                },
+                "$component": "image"
+              },
+              {
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": {
+                  "values": [
+                    null,
+                    "Can be wall-mounted or used on the floor."
+                  ],
+                  "$helper": "coalesce"
+                },
+                "$component": "text",
+                "max_char_count": 1000
+              }
+            ],
+            "$component": "vbox"
+          }
+        ],
+        "$component": "hbox"
+      },
+      {
+        "level": 1,
+        "content": "",
+        "$component": "header",
+        "max_char_count": 160
+      },
+      {
+        "class": "__salsify-enhanced-content__three-column __salsify-enhanced-content__more-space-between __salsify-enhanced-content__bottom-margin __salsify-enhanced-content__top-align",
+        "children": [{
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "width": 300,
+                "height": 300,
+                "source": null,
+                "$component": "image"
+              },
+              {
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 1000
+              }
+            ],
+            "$component": "vbox"
+          },
+          {
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "width": 300,
+                "height": 300,
+                "source": null,
+                "$component": "image"
+              },
+              {
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 1000
+              }
+            ],
+            "$component": "vbox"
+          },
+          {
+            "class": "__salsify-enhanced-content__vbox",
+            "children": [{
+                "width": 300,
+                "height": 300,
+                "source": null,
+                "$component": "image"
+              },
+              {
+                "level": 1,
+                "content": "",
+                "$component": "header",
+                "max_char_count": 160
+              },
+              {
+                "size": "medium",
+                "class": "__salsify-enhanced-content__line-height",
+                "content": "",
+                "$component": "text",
+                "max_char_count": 1000
+              }
+            ],
+            "$component": "vbox"
+          }
+        ],
+        "$component": "hbox"
+      },
+      {
+        "width": 970,
+        "height": 300,
+        "source": null,
+        "$component": "image"
+      }
+    ],
+    "$component": "vbox"
+  },
+  "env": {
+    "s-f16f285b-ed59-4b34-82aa-5daada2b63a9": [{
+        "download_url": "https://salsify-ecdn.com/images/e4f89274f04df2d26697c882ef802d50.jpg"
+      },
+      {
+        "download_url": "http://images.salsify.com/image/upload/s--FJLO2RJU--/f9umv6e7dgrjhi8xrsso.jpg"
+      },
+      {
+        "download_url": "http://images.salsify.com/image/upload/s--ediL1VCG--/yhvdggwt2gyevfwxeah4.jpg"
+      },
+      {
+        "download_url": "http://images.salsify.com/image/upload/s--LeWclWdr--/ewlft1gbo1a1pr6clac5.jpg"
+      }
+    ],
+    "Images": [{
+        "download_url": "http://images.salsify.com/image/upload/s--gTtfQyCQ--/bmeijkhpenvtb2mpfsoi.jpg"
+      },
+      {
+        "download_url": "http://images.salsify.com/image/upload/s--FJLO2RJU--/f9umv6e7dgrjhi8xrsso.jpg"
+      },
+      {
+        "download_url": "http://images.salsify.com/image/upload/s--ediL1VCG--/yhvdggwt2gyevfwxeah4.jpg"
+      },
+      {
+        "download_url": "http://images.salsify.com/image/upload/s--LeWclWdr--/ewlft1gbo1a1pr6clac5.jpg"
+      }
+    ],
+    "s-4a4b083e-bb17-48e0-b1a7-033c93ac86c6": [
+      "23528826"
+    ],
+    "Walmart Item ID": [
+      "23528826"
+    ],
+    "s-91f22201-5638-48cc-a8f4-661c80c9fe87": [
+      "B000046S3W"
+    ],
+    "ASIN": [
+      "B000046S3W"
+    ]
+  }
+}
+</pre></code>
+    </article>
+
+    <article class="slide">
+      <h1>Sequence of events</h1>
+      <img src="sequence.svg" alt="enhanced content sequence diagram" style="background-color: white;">
+    </article>
+
+    <article class="slide">
+      <h1>Fast Guide to FastBoot</h1>
+      <ol>
+        <li>
+          <code><pre>$ ember new my-project --yarn</pre></code>
+        </li>
+        <li>
+          <code><pre>$ ember install ember-cli-fastboot</pre></code>
+        </li>
+        <li>
+          <code><pre>
+$ yarn add -D fastboot-app-server
+          </pre></code>
+        </li>
+        <li>
+          <code><pre>$ node server.js</pre></code>
+        </li>
+      </ol>
+    </article>
+
+    <article class="slide">
+      <h1>Lets see some code</h1>
+      <h2><code>server.js</code></h2>
+      <script src="https://gist.github.com/0xadada/04bddc6c5d459796a3b8f706417f78b0.js"></script>
+    </article>
+
+    <article class="slide">
+      <h1>Gotchas</h1>
+      <ul>
+        <li>
+          Use
+          <code>
+            <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a></code>
+          in production 💣💥
+        </li>
+        <li>Your app is now running in two runtimes, the browser and the server.
+          <ul>
+            <li>your code may need to have branching conditions for the server runtime</li>
+            <li>No DOM on the server: no jQuery, no
+              <code>document</code>, no
+              <code>window</code> objects.
+            </li>
+            <li>Congrats🎉, you now have a new runtime to write tests for!</li>
+          </ul>
+        </li>
+        <li><code>ember-cli-fastboot-testing</code> for testing server FastBoot</li>
+        <li>Whitelist server dependencies in <code>package.json "dependencies"</code> block</li>
+        <li>Use Docker to host and deploy, it helps</li>
+      </ul>
+      <h3>Be aware of security vulnerabilities you never had to consider.</h3>
+    </article>
+
+    <article class="slide">
+      <h1>Thanks 👋🙇‍♂️</h1>
+      <div>
+        <img src="https://github.com/rsocci.png" height="192">
+        <img src="https://github.com/dfreeman.png" height="192">
+        <img src="https://github.com/deverstalmage.png" height="192">
+        <img src="https://github.com/kmontag42.png" height="192">
+        <img src="https://github.com/skarger.png" height="192">
+      </div>
+    </article>
+
+    <article class="slide">
+      <h1>Questions? / Resources</h1>
       <ul>
         <li>
           <a href="https://0xadada.pub/talk-using-ember-fastboot-in-weird-ways/">
-            Slides for this talk</a><br>
+            Slides
+          </a>
+          <br>
           https://0xadada.pub/talk-using-ember-fastboot-in-weird-ways/
+        </li>
+        <li>
+          <a href="https://www.ember-fastboot.com/">ember fastboot</a>
+        </li>
+        <li>
+          <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a>
         </li>
       </ul>
     </article>
