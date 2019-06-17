@@ -34,7 +34,8 @@
       img { max-width: 100%; }
 
       .slide {
-        height: 100vh;
+        border: 1rem solid transparent;
+        height: calc(100vh - 4rem);
         padding: 1rem;
         display: flex;
         flex-direction: column;
@@ -45,7 +46,6 @@
         background-color: black;
         border: 1rem solid white;
         color: white;
-        height: calc(100vh - 2rem);
       }
       .slide:nth-child(2n+1) a:link,
       .slide:nth-child(2n+1) a:visited {
