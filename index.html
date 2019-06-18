@@ -62,10 +62,16 @@
         background-image: url('speed-lines.gif');
         background-size: 110vw 110vh;
       }
+
+      .gist {
+        max-height: 100vh;
+          max-width: 90vw;
+        overflow-y: scroll;
+      }
     </style>
   </head>
   <body>
-    <article class="slide center slide-speedlines">
+    <article class="slide center slide-speedlines" id="title">
       <h1>
         Using Ember FastBoot
         <br>
@@ -82,34 +88,46 @@
     </article>
 
     <article class="slide" id="about-me" style="position: relative">
-      <img src="avatar.svg" alt="0xADADA avatar" height="256" style="position: absolute;top: 0;left: 0;opacity: 0.25;height: 100vh;">
+      <img src="avatar.svg" alt="0xADADA avatar" height="256" style="position: absolute;top: 0;left: 0;opacity: 0.25;height: 100vh; z-index: -1;">
       <h1>About me</h1>
       <ul>
-        <li>IRL name: Ron</li>
-        <li>Engineer here at Salsify</li>
+        <li>Ron / Software Engineer / Salsify</li>
         <li>0xADADA on Twitter, GitHub, everywhere.</li>
-        <li><code>https://0xadada.pub</code> is my internet house</li>
+        <li><code>https://0xadada.pub</code> (my internet house)</li>
         <li>Using Ember for ~three years</li>
         <li>hecklers welcome 👺</li>
       </ul>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="toc">
       <h1>Agenda</h1>
       <ol>
-        <li>Review of web app architectures</li>
-        <li>Introduce Ember FastBoot</li>
-        <li>Introduce our app &amp; usecase</li>
-        <li>How we use FastBoot</li>
-        <li>Questions?</li>
+        <li>
+          <a href="#review">Review of web app architectures</a>
+        </li>
+        <li>
+          <a href="#introducing-fastboot">Introduce Ember FastBoot</a>
+        </li>
+        <li>
+          <a href="#our-usecase">Introduce our usecase</a>
+        </li>
+        <li>
+          <a href="#ec">FastBoot at Salsify</a>
+        </li>
+        <li>
+          <a href="#fastguide">FastGuide to FastBoot</a>
+        </li>
+        <li>
+          <a href="#questions">Questions? / Resources</a>
+        </li>
       </ol>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="review">
         <h1>Review of web app architectures</h1>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="oldschool">
       <h1>Traditional app architecture</h1>
       <ul>
         <li>PHP/Java/Ruby app server</li>
@@ -119,7 +137,7 @@
       <img src="arch-web-trad.png" alt="traditional web architecture">
     </article>
 
-    <article class="slide">
+    <article class="slide" id="spa">
       <h1>Single-page app architecture, aka "SPA"</h1>
       <ul>
         <li>PHP/Java/Ruby app API server</li>
@@ -129,7 +147,7 @@
       <img src="arch-web-spa.png" alt="SPA web architecture">
     </article>
 
-    <article class="slide">
+    <article class="slide" id="new-hawtness">
       <h1>Server-side render/Single-page app architecture</h1>
       <ul>
         <li>PHP/Java/Ruby app API server</li>
@@ -139,18 +157,18 @@
       <img src="arch-web-ssrspa.png" alt="SSR/SPA web architecture">
     </article>
 
-    <article class="slide" id=4>
+    <article class="slide" id="introducing-fastboot">
       <h1>Introducing Ember FastBoot</h1>
     </article>
 
-    <article class="slide" id=3>
+    <article class="slide" id="fastboot-website">
       <iframe
         src="https://ember-fastboot.com/"
         frameborder=0 scrolling="no"
         style="width: 90vw; height: 90vh"></iframe>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="what-is-fastboot">
       <h1>What is Ember FastBoot</h1>
       <ul>
         <li>Server-side rendering app server, aka "SSR"</li>
@@ -159,7 +177,7 @@
       </ul>
     </article>
 
-     <article class="slide">
+     <article class="slide" id="why-ssr">
       <h1>Why Server-side rendering?</h1>
       <ul>
         <li>Improves search indexing and crawlability</li>
@@ -169,11 +187,11 @@
       </ul>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="our-usecase">
       <h1>Introduce our usecase</h1>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="no-javascript">
       <h1>
         <em>where JavaScript is restricted</em>
       </h1>
@@ -184,13 +202,13 @@
       <ul>
         <li>Many online retailers allow "below-the-fold" content</li>
         <li>Mostly art-directed imagery and HTML</li>
-        <li>Mostly provided by static HTML</li>
+        <li>Mostly static HTML</li>
         <li>Mostly implemented inside an <code>iframe</code></li>
         <li>Mostly injected onto the page by 3rd-party JavaScript</li>
       </ul>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="constraints">
       <h1>Constraints📦</h1>
       <ol>
         <li>must serve static HTML</li>
@@ -201,16 +219,16 @@
       <p>what would work with these constraints? 🤔</p>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="amazon">
       <h3>
         <a href="https://www.amazon.com/Chicco-NextFit-Zip-Convertible-Seat/dp/B07MP6VTKM" rel="external noopener">
-          amazon.com
+          amazon
         </a>
       </h3>
       <img src="screen-amazon.jpg" style="float: left" alt="amazon.com screenshot">
     </article>
 
-    <article class="slide">
+    <article class="slide" id="walmart">
       <h1>
         <a href="https://www.walmart.com/ip/Chicco-NextFit-Sport-Convertible-Car-Seat-Shadow/509228002" rel="external noopener">
           walmart.com
@@ -224,11 +242,11 @@
       </ul>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="walmart-screenshot">
       <img src="screen-walmart.jpg" alt="walmart.com screenshot">
     </article>
 
-    <article class="slide">
+    <article class="slide" id="bjs">
       <h1>
         <a href="https://www.bjs.com/product/gorilla-playsets-treasure-trove-swing-set/212845" rel="external noopener">
           bjs.com
@@ -241,20 +259,21 @@
       </ul>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="bjs-screenshot">
       <img src="screen-bjs.jpg" alt="bjs.com screenshot">
     </article>
-    <article class="slide">
+
+    <article class="slide" id="ec">
       <h1>Salsify Enhanced Content</h1>
       <img src="enhanced-content.webp" alt="Salsify composer screenshot">
     </article>
 
-    <article class="slide">
+    <article class="slide" id="ec-input-output">
       <h1>Enhanced Content</h1>
       <ul>
         <li>Client: The visual template editor; Ember.js
           <ul>
-            <li>input: user interactions</li>
+            <li>input: user binds data to a template, inputs copy &amp; images.</li>
             <li>ouput: template UI config with content &amp; data bindings</li>
           </ul>
         </li>
@@ -273,7 +292,7 @@
       </ul>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="example-data">
       <h1>Example</h1>
       <h2>UI data sent to FastBoot:</h2>
       <h3>
@@ -316,440 +335,19 @@
 </pre></code>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="real-example">
       <h1>Real Example</h1>
-      <h2>(demo intensifies)</h2>
-
-<code style="overflow-y: scroll"><pre>
-{
-  "config": {
-    "class": "__salsify-enhanced-content__vbox __salsify-enhanced-content__layout-container",
-    "children": [{
-        "class": "__salsify-enhanced-content__bottom-margin",
-        "width": 970,
-        "height": 300,
-        "source": {
-          "values": [
-            null,
-            {
-              "id": "s-401b7671-e0c3-4094-a746-422f77670711",
-              "name": "Safety1st_Brand_A+Header.png",
-              "bytes": null,
-              "format": null,
-              "details": "300 x 970\n335 KB",
-              "large_url": "https://images.salsify.com/image/upload/s--Q4f9PGWO--/c_limit,cs_srgb,h_600,w_600/fvcgrldt0wqvjjh8wbem.jpg",
-              "created_at": "2018-11-07T21:24:55.698Z",
-              "detail_url": null,
-              "dimensions": null,
-              "source_url": null,
-              "external_id": "2116f14a1329bada369242f222930ab4fcc0cbf8",
-              "download_url": "https://salsify-ecdn.com/images/5e32d7a3630f6b9706c15f2f46e2e5ff.png",
-              "resource_type": "image",
-              "thumbnail_url": "https://images.salsify.com/image/upload/s--sVHi0ahW--/t_salsify_thumb/fvcgrldt0wqvjjh8wbem.jpg",
-              "property_values": [],
-              "shareable_links": [],
-              "humanized_duration": null,
-              "humanized_resource_type": "Image (PNG)"
-            }
-          ],
-          "$helper": "digital_asset_coalesce"
-        },
-        "$component": "image"
-      },
-      {
-        "class": "__salsify-enhanced-content__three-column __salsify-enhanced-content__more-space-between __salsify-enhanced-content__bottom-margin __salsify-enhanced-content__top-align",
-        "children": [{
-            "width": 300,
-            "height": 300,
-            "source": null,
-            "$component": "image"
-          },
-          {
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "level": 2,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 200
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 1000
-              },
-              {
-                "level": 2,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 200
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 400
-              }
-            ],
-            "$component": "vbox"
-          },
-          {
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "level": 2,
-                "content": "Safety 1st Power Strip",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "small",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 100
-              },
-              {
-                "size": "small",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 100
-              },
-              {
-                "size": "small",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 100
-              },
-              {
-                "size": "small",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 100
-              }
-            ],
-            "$component": "vbox"
-          }
-        ],
-        "$component": "hbox"
-      },
-      {
-        "level": 1,
-        "content": {
-          "values": [
-            null,
-            "Safety 1st Power Strip Cover"
-          ],
-          "$helper": "coalesce"
-        },
-        "$component": "header",
-        "max_char_count": 160
-      },
-      {
-        "class": "__salsify-enhanced-content__three-column __salsify-enhanced-content__more-space-between __salsify-enhanced-content__bottom-margin __salsify-enhanced-content__top-align",
-        "children": [{
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "width": 300,
-                "height": 300,
-                "source": {
-                  "values": [{
-                      "$bind": "s-f16f285b-ed59-4b34-82aa-5daada2b63a9.firstObject"
-                    },
-                    null
-                  ],
-                  "$helper": "digital_asset_coalesce"
-                },
-                "$component": "image"
-              },
-              {
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": {
-                  "values": [
-                    null,
-                    "Easily adjusts to securely enclose a full power strip."
-                  ],
-                  "$helper": "coalesce"
-                },
-                "$component": "text",
-                "max_char_count": 1000
-              }
-            ],
-            "$component": "vbox"
-          },
-          {
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "width": 300,
-                "height": 300,
-                "source": {
-                  "values": [
-                    null,
-                    {
-                      "id": "s-36235799-4a7f-48dc-a91d-6f721acf9c0d",
-                      "name": "10409_Bty.jpg",
-                      "bytes": 1049836,
-                      "format": null,
-                      "details": "2414 x 2414\n1 MB",
-                      "large_url": "https://images.salsify.com/image/upload/s--_yFqekK4--/c_limit,cs_srgb,h_600,w_600/f9umv6e7dgrjhi8xrsso.jpg",
-                      "created_at": "2015-02-18T15:00:33.127Z",
-                      "detail_url": null,
-                      "dimensions": null,
-                      "source_url": null,
-                      "external_id": "ce88b46232b2cacce49148d03b287e9d50494487",
-                      "download_url": "https://salsify-ecdn.com/images/979c0bee120618156658432c3076acf4.jpg",
-                      "resource_type": "image",
-                      "thumbnail_url": "https://images.salsify.com/image/upload/s---kslzrGC--/t_salsify_thumb/f9umv6e7dgrjhi8xrsso.jpg",
-                      "property_values": [],
-                      "shareable_links": [],
-                      "humanized_duration": null,
-                      "humanized_resource_type": "Image (JPG)"
-                    }
-                  ],
-                  "$helper": "digital_asset_coalesce"
-                },
-                "$component": "image"
-              },
-              {
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": {
-                  "values": [
-                    null,
-                    "Keeps curious kids out of power strip outlets."
-                  ],
-                  "$helper": "coalesce"
-                },
-                "$component": "text",
-                "max_char_count": 1000
-              }
-            ],
-            "$component": "vbox"
-          },
-          {
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "width": 300,
-                "height": 300,
-                "source": {
-                  "values": [
-                    null,
-                    {
-                      "id": "s-e04e3ca1-f64e-4d7c-ad74-c18673c8c13f",
-                      "name": "10409_Lifestyle.jpg",
-                      "bytes": 5086760,
-                      "format": null,
-                      "details": "2700 x 2700\n4.85 MB",
-                      "large_url": "https://images.salsify.com/image/upload/s--ooXA8IPT--/c_limit,cs_srgb,h_600,w_600/ewlft1gbo1a1pr6clac5.jpg",
-                      "created_at": "2015-02-18T15:00:14.269Z",
-                      "detail_url": null,
-                      "dimensions": null,
-                      "source_url": null,
-                      "external_id": "585bf7352998533305d36ec87973154b10ba0a2f",
-                      "download_url": "https://salsify-ecdn.com/images/19f2a92fcb678fe3fd810570e45adcff.jpg",
-                      "resource_type": "image",
-                      "thumbnail_url": "https://images.salsify.com/image/upload/s--TVEr87Kl--/t_salsify_thumb/ewlft1gbo1a1pr6clac5.jpg",
-                      "property_values": [],
-                      "shareable_links": [],
-                      "humanized_duration": null,
-                      "humanized_resource_type": "Image (JPG)"
-                    }
-                  ],
-                  "$helper": "digital_asset_coalesce"
-                },
-                "$component": "image"
-              },
-              {
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": {
-                  "values": [
-                    null,
-                    "Can be wall-mounted or used on the floor."
-                  ],
-                  "$helper": "coalesce"
-                },
-                "$component": "text",
-                "max_char_count": 1000
-              }
-            ],
-            "$component": "vbox"
-          }
-        ],
-        "$component": "hbox"
-      },
-      {
-        "level": 1,
-        "content": "",
-        "$component": "header",
-        "max_char_count": 160
-      },
-      {
-        "class": "__salsify-enhanced-content__three-column __salsify-enhanced-content__more-space-between __salsify-enhanced-content__bottom-margin __salsify-enhanced-content__top-align",
-        "children": [{
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "width": 300,
-                "height": 300,
-                "source": null,
-                "$component": "image"
-              },
-              {
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 1000
-              }
-            ],
-            "$component": "vbox"
-          },
-          {
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "width": 300,
-                "height": 300,
-                "source": null,
-                "$component": "image"
-              },
-              {
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 1000
-              }
-            ],
-            "$component": "vbox"
-          },
-          {
-            "class": "__salsify-enhanced-content__vbox",
-            "children": [{
-                "width": 300,
-                "height": 300,
-                "source": null,
-                "$component": "image"
-              },
-              {
-                "level": 1,
-                "content": "",
-                "$component": "header",
-                "max_char_count": 160
-              },
-              {
-                "size": "medium",
-                "class": "__salsify-enhanced-content__line-height",
-                "content": "",
-                "$component": "text",
-                "max_char_count": 1000
-              }
-            ],
-            "$component": "vbox"
-          }
-        ],
-        "$component": "hbox"
-      },
-      {
-        "width": 970,
-        "height": 300,
-        "source": null,
-        "$component": "image"
-      }
-    ],
-    "$component": "vbox"
-  },
-  "env": {
-    "s-f16f285b-ed59-4b34-82aa-5daada2b63a9": [{
-        "download_url": "https://salsify-ecdn.com/images/e4f89274f04df2d26697c882ef802d50.jpg"
-      },
-      {
-        "download_url": "http://images.salsify.com/image/upload/s--FJLO2RJU--/f9umv6e7dgrjhi8xrsso.jpg"
-      },
-      {
-        "download_url": "http://images.salsify.com/image/upload/s--ediL1VCG--/yhvdggwt2gyevfwxeah4.jpg"
-      },
-      {
-        "download_url": "http://images.salsify.com/image/upload/s--LeWclWdr--/ewlft1gbo1a1pr6clac5.jpg"
-      }
-    ],
-    "Images": [{
-        "download_url": "http://images.salsify.com/image/upload/s--gTtfQyCQ--/bmeijkhpenvtb2mpfsoi.jpg"
-      },
-      {
-        "download_url": "http://images.salsify.com/image/upload/s--FJLO2RJU--/f9umv6e7dgrjhi8xrsso.jpg"
-      },
-      {
-        "download_url": "http://images.salsify.com/image/upload/s--ediL1VCG--/yhvdggwt2gyevfwxeah4.jpg"
-      },
-      {
-        "download_url": "http://images.salsify.com/image/upload/s--LeWclWdr--/ewlft1gbo1a1pr6clac5.jpg"
-      }
-    ],
-    "s-4a4b083e-bb17-48e0-b1a7-033c93ac86c6": [
-      "23528826"
-    ],
-    "Walmart Item ID": [
-      "23528826"
-    ],
-    "s-91f22201-5638-48cc-a8f4-661c80c9fe87": [
-      "B000046S3W"
-    ],
-    "ASIN": [
-      "B000046S3W"
-    ]
-  }
-}
-</pre></code>
+      <h2>(ember-exclaim ⚠️  demo intensifies)</h2>
+      <script src="https://gist.github.com/0xadada/b7e097762728f9c17ff5f72a022d7cf4.js"></script>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="sequence">
       <h1>Sequence of events</h1>
       <img src="sequence.svg" alt="enhanced content sequence diagram" style="background-color: white;">
     </article>
 
-    <article class="slide">
-      <h1>Fast Guide to FastBoot</h1>
+    <article class="slide" id="fastguide">
+      <h1>FastGuide to FastBoot</h1>
       <ol>
         <li>
           <code><pre>$ ember new my-project --yarn</pre></code>
@@ -768,13 +366,13 @@ $ yarn add -D fastboot-app-server
       </ol>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="actual-code">
       <h1>Lets see some code</h1>
       <h2><code>server.js</code></h2>
       <script src="https://gist.github.com/0xadada/04bddc6c5d459796a3b8f706417f78b0.js"></script>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="gotchas">
       <h1>Gotchas</h1>
       <ul>
         <li>
@@ -800,7 +398,7 @@ $ yarn add -D fastboot-app-server
       <h3>Be aware of security vulnerabilities you never had to consider.</h3>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="thanks">
       <h1>Thanks 👋🙇‍♂️</h1>
       <div>
         <img src="https://github.com/rsocci.png" height="192">
@@ -811,7 +409,7 @@ $ yarn add -D fastboot-app-server
       </div>
     </article>
 
-    <article class="slide">
+    <article class="slide" id="questions">
       <h1>Questions? / Resources</h1>
       <ul>
         <li>
@@ -826,6 +424,12 @@ $ yarn add -D fastboot-app-server
         </li>
         <li>
           <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a>
+        </li>
+        <li>
+          Typeset in
+          <a href="https://mirai.audio/system-font-i18n-css/#about">system-font-i18n.css</a>
+          <br>
+          <code>$ npm home system-font-i18n-css</code>
         </li>
       </ul>
     </article>
