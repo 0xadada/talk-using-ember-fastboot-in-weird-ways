@@ -15,6 +15,9 @@
         margin: 0;
         padding: 0;
       }
+      body { 
+        scroll-snap-type: y mandatory;
+      }
 
       h1 { font-size: 5rem; }
       h2 { font-size: 3rem; }
@@ -45,6 +48,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        scroll-snap-align: start;
       }
       .slide:nth-child(2n+1) {
         background-color: black;
