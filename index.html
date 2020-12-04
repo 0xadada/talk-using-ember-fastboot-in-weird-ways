@@ -11,7 +11,7 @@
         margin: 0;
         padding: 0;
       }
-      body { 
+      .slides { 
         overflow-y: scroll;
         scroll-snap-type: y mandatory;
       }
@@ -73,369 +73,371 @@
     </style>
   </head>
   <body class="system-sans-serif">
-    <article class="slide center slide-speedlines" id="title">
-      <h1>
-        Using Ember FastBoot
-        <br>
-        in Weird Ways</h1>
-      <h2>
-        by
-        <a href="https://twitter.com/0xadada" rel="me external noopener">0xADADA</a>
-      </h2>
-      <p>
-        <a
-          href="https://www.meetup.com/Boston-Ember-js-Community/events/261908863/"
-          rel="external noopener">Boston Ember Community</a>, June 18th 2019
-      </p>
-    </article>
+    <div class="slides">
+      <article class="slide center slide-speedlines" id="title">
+        <h1>
+          Using Ember FastBoot
+          <br>
+          in Weird Ways</h1>
+        <h2>
+          by
+          <a href="https://twitter.com/0xadada" rel="me external noopener">0xADADA</a>
+        </h2>
+        <p>
+          <a
+            href="https://www.meetup.com/Boston-Ember-js-Community/events/261908863/"
+            rel="external noopener">Boston Ember Community</a>, June 18th 2019
+        </p>
+      </article>
 
-    <article class="slide" id="about-me" style="position: relative">
-      <img src="avatar.svg" alt="0xADADA avatar" height="256" style="position: absolute;top: 0;left: 0;opacity: 0.25;height: 100vh; z-index: -1;">
-      <h1>About me</h1>
-      <ul>
-        <li>pronunciation: zɪroʊ ɛks ə di ə di eɪ</li>
-        <li>0xADADA on Twitter, GitHub, everywhere.</li>
-        <li><code>https://0xadada.pub</code> (my internet house)</li>
-        <li>Using Ember for ~three years</li>
-        <li>hecklers welcome 👺</li>
-      </ul>
-    </article>
+      <article class="slide" id="about-me" style="position: relative">
+        <img src="avatar.svg" alt="0xADADA avatar" height="256" style="position: absolute;top: 0;left: 0;opacity: 0.25;height: 100vh; z-index: -1;">
+        <h1>About me</h1>
+        <ul>
+          <li>pronunciation: zɪroʊ ɛks ə di ə di eɪ</li>
+          <li>0xADADA on Twitter, GitHub, everywhere.</li>
+          <li><code>https://0xadada.pub</code> (my internet house)</li>
+          <li>Using Ember for ~three years</li>
+          <li>hecklers welcome 👺</li>
+        </ul>
+      </article>
 
-    <article class="slide" id="toc">
-      <h1>Agenda</h1>
-      <ol>
-        <li>
-          <a href="#review">Review of web app architectures</a>
-        </li>
-        <li>
-          <a href="#introducing-fastboot">Introduce Ember FastBoot</a>
-        </li>
-        <li>
-          <a href="#our-usecase">Introduce our usecase</a>
-        </li>
-        <li>
-          <a href="#ec">FastBoot at Salsify</a>
-        </li>
-        <li>
-          <a href="#fastguide">FastGuide to FastBoot</a>
-        </li>
-        <li>
-          <a href="#questions">Questions? / Resources</a>
-        </li>
-      </ol>
-    </article>
+      <article class="slide" id="toc">
+        <h1>Agenda</h1>
+        <ol>
+          <li>
+            <a href="#review">Review of web app architectures</a>
+          </li>
+          <li>
+            <a href="#introducing-fastboot">Introduce Ember FastBoot</a>
+          </li>
+          <li>
+            <a href="#our-usecase">Introduce our usecase</a>
+          </li>
+          <li>
+            <a href="#ec">FastBoot at Salsify</a>
+          </li>
+          <li>
+            <a href="#fastguide">FastGuide to FastBoot</a>
+          </li>
+          <li>
+            <a href="#questions">Questions? / Resources</a>
+          </li>
+        </ol>
+      </article>
 
-    <article class="slide" id="review">
-        <h1>Review of web app architectures</h1>
-    </article>
+      <article class="slide" id="review">
+          <h1>Review of web app architectures</h1>
+      </article>
 
-    <article class="slide" id="oldschool">
-      <h1>Traditional app architecture</h1>
-      <ul>
-        <li>PHP/Java/Ruby app server</li>
-        <li>Renders static HTML to the browser</li>
-        <li>Ad-hoc client JavaScript for interactivity</li>
-      </ul>
-      <img src="arch-web-trad.png" alt="traditional web architecture">
-    </article>
+      <article class="slide" id="oldschool">
+        <h1>Traditional app architecture</h1>
+        <ul>
+          <li>PHP/Java/Ruby app server</li>
+          <li>Renders static HTML to the browser</li>
+          <li>Ad-hoc client JavaScript for interactivity</li>
+        </ul>
+        <img src="arch-web-trad.png" alt="traditional web architecture">
+      </article>
 
-    <article class="slide" id="spa">
-      <h1>Single-page app architecture, aka "SPA"</h1>
-      <ul>
-        <li>PHP/Java/Ruby app API server</li>
-        <li>Renders static HTML shell w/o content to the browser</li>
-        <li>Client JavaScript framework renders the UI in DOM</li>
-      </ul>
-      <img src="arch-web-spa.png" alt="SPA web architecture">
-    </article>
+      <article class="slide" id="spa">
+        <h1>Single-page app architecture, aka "SPA"</h1>
+        <ul>
+          <li>PHP/Java/Ruby app API server</li>
+          <li>Renders static HTML shell w/o content to the browser</li>
+          <li>Client JavaScript framework renders the UI in DOM</li>
+        </ul>
+        <img src="arch-web-spa.png" alt="SPA web architecture">
+      </article>
 
-    <article class="slide" id="new-hawtness">
-      <h1>Server-side render/Single-page app architecture</h1>
-      <ul>
-        <li>PHP/Java/Ruby app API server</li>
-        <li>Renders static HTML w/content to the browser</li>
-        <li>Client runs JavaScript framework to render subsequent pages</li>
-      </ul>
-      <img src="arch-web-ssrspa.png" alt="SSR/SPA web architecture">
-    </article>
+      <article class="slide" id="new-hawtness">
+        <h1>Server-side render/Single-page app architecture</h1>
+        <ul>
+          <li>PHP/Java/Ruby app API server</li>
+          <li>Renders static HTML w/content to the browser</li>
+          <li>Client runs JavaScript framework to render subsequent pages</li>
+        </ul>
+        <img src="arch-web-ssrspa.png" alt="SSR/SPA web architecture">
+      </article>
 
-    <article class="slide" id="introducing-fastboot">
-      <h1>Introducing Ember FastBoot</h1>
-    </article>
+      <article class="slide" id="introducing-fastboot">
+        <h1>Introducing Ember FastBoot</h1>
+      </article>
 
-    <article class="slide" id="fastboot-website">
-      <iframe
-        src="https://ember-fastboot.com/"
-        frameborder=0 scrolling="no"
-        style="width: 90vw; height: 90vh"></iframe>
-    </article>
+      <article class="slide" id="fastboot-website">
+        <iframe
+          src="https://ember-fastboot.com/"
+          frameborder=0 scrolling="no"
+          style="width: 90vw; height: 90vh"></iframe>
+      </article>
 
-    <article class="slide" id="what-is-fastboot">
-      <h1>What is Ember FastBoot</h1>
-      <ul>
-        <li>Server-side rendering app server, aka "SSR"</li>
-        <li>Runs on Node/Express.js</li>
-        <li>Brings one aspect of progressive enhancement to your Ember app</li>
-      </ul>
-    </article>
+      <article class="slide" id="what-is-fastboot">
+        <h1>What is Ember FastBoot</h1>
+        <ul>
+          <li>Server-side rendering app server, aka "SSR"</li>
+          <li>Runs on Node/Express.js</li>
+          <li>Brings one aspect of progressive enhancement to your Ember app</li>
+        </ul>
+      </article>
 
-     <article class="slide" id="why-ssr">
-      <h1>Why Server-side rendering?</h1>
-      <ul>
-        <li>Improves search indexing and crawlability</li>
-        <li>Faster load times</li>
-        <li>Enables standard caching strategies</li>
-        <li>Works without JavaScript or <em>where JavaScript is restricted</em></li>
-      </ul>
-    </article>
+       <article class="slide" id="why-ssr">
+        <h1>Why Server-side rendering?</h1>
+        <ul>
+          <li>Improves search indexing and crawlability</li>
+          <li>Faster load times</li>
+          <li>Enables standard caching strategies</li>
+          <li>Works without JavaScript or <em>where JavaScript is restricted</em></li>
+        </ul>
+      </article>
 
-    <article class="slide" id="our-usecase">
-      <h1>Introduce our usecase</h1>
-    </article>
+      <article class="slide" id="our-usecase">
+        <h1>Introduce our usecase</h1>
+      </article>
 
-    <article class="slide" id="no-javascript">
-      <h1>
-        <em>where JavaScript is restricted</em>
-      </h1>
-      <p>Many online retailers allow "from the manufacturer" or "below-the-fold"
-        content— that is, content from the manufacturer describing their own
-        product. Most often this is rich marketing text, images, and video.
-      </p>
-      <ul>
-        <li>Many online retailers allow "below-the-fold" content</li>
-        <li>Mostly art-directed imagery and HTML</li>
-        <li>Mostly static HTML</li>
-        <li>Mostly implemented inside an <code>iframe</code></li>
-        <li>Mostly injected onto the page by 3rd-party JavaScript</li>
-      </ul>
-    </article>
+      <article class="slide" id="no-javascript">
+        <h1>
+          <em>where JavaScript is restricted</em>
+        </h1>
+        <p>Many online retailers allow "from the manufacturer" or "below-the-fold"
+          content— that is, content from the manufacturer describing their own
+          product. Most often this is rich marketing text, images, and video.
+        </p>
+        <ul>
+          <li>Many online retailers allow "below-the-fold" content</li>
+          <li>Mostly art-directed imagery and HTML</li>
+          <li>Mostly static HTML</li>
+          <li>Mostly implemented inside an <code>iframe</code></li>
+          <li>Mostly injected onto the page by 3rd-party JavaScript</li>
+        </ul>
+      </article>
 
-    <article class="slide" id="constraints">
-      <h1>Constraints📦</h1>
-      <ol>
-        <li>must serve static HTML</li>
-        <li>should be heavily cached</li>
-        <li>team is efficient with Ember</li>
-        <li>our app already renders these layouts</li>
-      </ol>
-      <p>what would work with these constraints? 🤔</p>
-    </article>
+      <article class="slide" id="constraints">
+        <h1>Constraints📦</h1>
+        <ol>
+          <li>must serve static HTML</li>
+          <li>should be heavily cached</li>
+          <li>team is efficient with Ember</li>
+          <li>our app already renders these layouts</li>
+        </ol>
+        <p>what would work with these constraints? 🤔</p>
+      </article>
 
-    <article class="slide" id="amazon">
-      <h3>
-        <a href="https://www.amazon.com/Chicco-NextFit-Zip-Convertible-Seat/dp/B07MP6VTKM" rel="external noopener">
-          amazon
-        </a>
-      </h3>
-      <img src="screen-amazon.jpg" style="float: left" alt="amazon.com screenshot">
-    </article>
+      <article class="slide" id="amazon">
+        <h3>
+          <a href="https://www.amazon.com/Chicco-NextFit-Zip-Convertible-Seat/dp/B07MP6VTKM" rel="external noopener">
+            amazon
+          </a>
+        </h3>
+        <img src="screen-amazon.jpg" style="float: left" alt="amazon.com screenshot">
+      </article>
 
-    <article class="slide" id="walmart">
-      <h1>
-        <a href="https://www.walmart.com/ip/Chicco-NextFit-Sport-Convertible-Car-Seat-Shadow/509228002" rel="external noopener">
-          walmart.com
-        </a>
-      </h1>
-      <ul>
-        <li>Hesitant to use 3rd-party JavaScript</li>
-        <li>Hosts the content themselves</li>
-        <li>Writes our HTML directly into <code>iframe</code></li>
-        <li>Sanitize markup, and strips JavaScript*<sup>not all 🤷‍♂️</sup></li>
-      </ul>
-    </article>
+      <article class="slide" id="walmart">
+        <h1>
+          <a href="https://www.walmart.com/ip/Chicco-NextFit-Sport-Convertible-Car-Seat-Shadow/509228002" rel="external noopener">
+            walmart.com
+          </a>
+        </h1>
+        <ul>
+          <li>Hesitant to use 3rd-party JavaScript</li>
+          <li>Hosts the content themselves</li>
+          <li>Writes our HTML directly into <code>iframe</code></li>
+          <li>Sanitize markup, and strips JavaScript*<sup>not all 🤷‍♂️</sup></li>
+        </ul>
+      </article>
 
-    <article class="slide" id="walmart-screenshot">
-      <img src="screen-walmart.jpg" alt="walmart.com screenshot">
-    </article>
+      <article class="slide" id="walmart-screenshot">
+        <img src="screen-walmart.jpg" alt="walmart.com screenshot">
+      </article>
 
-    <article class="slide" id="bjs">
-      <h1>
-        <a href="https://www.bjs.com/product/gorilla-playsets-treasure-trove-swing-set/212845" rel="external noopener">
-          bjs.com
-        </a>
-      </h1>
-      <ul>
-        <li>Reviews 3rd-party JavaScript</li>
-        <li>We inject an <code>iframe</code> on page</li>
-        <li><code>iframe</code> loads static HTML</li>
-      </ul>
-    </article>
+      <article class="slide" id="bjs">
+        <h1>
+          <a href="https://www.bjs.com/product/gorilla-playsets-treasure-trove-swing-set/212845" rel="external noopener">
+            bjs.com
+          </a>
+        </h1>
+        <ul>
+          <li>Reviews 3rd-party JavaScript</li>
+          <li>We inject an <code>iframe</code> on page</li>
+          <li><code>iframe</code> loads static HTML</li>
+        </ul>
+      </article>
 
-    <article class="slide" id="bjs-screenshot">
-      <img src="screen-bjs.jpg" alt="bjs.com screenshot">
-    </article>
+      <article class="slide" id="bjs-screenshot">
+        <img src="screen-bjs.jpg" alt="bjs.com screenshot">
+      </article>
 
-    <article class="slide" id="ec">
-      <h1>Salsify Enhanced Content</h1>
-      <img src="enhanced-content.webp" alt="Salsify composer screenshot">
-    </article>
+      <article class="slide" id="ec">
+        <h1>Salsify Enhanced Content</h1>
+        <img src="enhanced-content.webp" alt="Salsify composer screenshot">
+      </article>
 
-    <article class="slide" id="ec-input-output">
-      <h1>Enhanced Content</h1>
-      <ul>
-        <li>Client: The visual template editor; Ember.js
-          <ul>
-            <li>input: user binds data to a template, inputs copy &amp; images.</li>
-            <li>ouput: template UI config with content &amp; data bindings</li>
-          </ul>
-        </li>
-        <li>API server: Fetches product data; Ruby on Rails
-          <ul>
-            <li>input: product lists, template UI config with content &amp; data bindings</li>
-            <li>ouput: rendered HTML (saved to Amazon S3)</li>
-          </ul>
-        </li>
-        <li>SSR server Renders static HTML; Ember FastBoot
-          <ul>
-            <li>input: template UI config with content &amp; data bindings</li>
-            <li>ouput: rendered HTML</li>
-          </ul>
-        </li>
-      </ul>
-    </article>
+      <article class="slide" id="ec-input-output">
+        <h1>Enhanced Content</h1>
+        <ul>
+          <li>Client: The visual template editor; Ember.js
+            <ul>
+              <li>input: user binds data to a template, inputs copy &amp; images.</li>
+              <li>ouput: template UI config with content &amp; data bindings</li>
+            </ul>
+          </li>
+          <li>API server: Fetches product data; Ruby on Rails
+            <ul>
+              <li>input: product lists, template UI config with content &amp; data bindings</li>
+              <li>ouput: rendered HTML (saved to Amazon S3)</li>
+            </ul>
+          </li>
+          <li>SSR server Renders static HTML; Ember FastBoot
+            <ul>
+              <li>input: template UI config with content &amp; data bindings</li>
+              <li>ouput: rendered HTML</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
 
-    <article class="slide" id="example-data">
-      <h1>Example</h1>
-      <h2>UI data sent to FastBoot:</h2>
-      <h3>
-        <code>config</code>: The template
-        <br>
-        <code>env</code>: The content and data bindings
-      </h3>
-<code><pre>
-{
-  "config": {
-    "$vbox": [{
-        "$hbox": [{
-            "$text": "Your name: "
-          },
-          {
-            "$input": {
-              "$bind": "name"
-            }
-          }
-        ]
-      },
-      {
-        "$text": {
-          "$join": [{
-              "$bind": "greeting"
+      <article class="slide" id="example-data">
+        <h1>Example</h1>
+        <h2>UI data sent to FastBoot:</h2>
+        <h3>
+          <code>config</code>: The template
+          <br>
+          <code>env</code>: The content and data bindings
+        </h3>
+  <code><pre>
+  {
+    "config": {
+      "$vbox": [{
+          "$hbox": [{
+              "$text": "Your name: "
             },
             {
-              "$bind": "name"
+              "$input": {
+                "$bind": "name"
+              }
             }
           ]
+        },
+        {
+          "$text": {
+            "$join": [{
+                "$bind": "greeting"
+              },
+              {
+                "$bind": "name"
+              }
+            ]
+          }
         }
-      }
-    ]
-  },
-  "env": {
-    "greeting": "Hello, ",
-    "name": "CHANGEME"
+      ]
+    },
+    "env": {
+      "greeting": "Hello, ",
+      "name": "CHANGEME"
+    }
   }
-}
-</pre></code>
-    </article>
+  </pre></code>
+      </article>
 
-    <article class="slide" id="real-example">
-      <h1>Real Example</h1>
-      <h2>(ember-exclaim ⚠️  demo intensifies)</h2>
-      <script src="https://gist.github.com/0xadada/b7e097762728f9c17ff5f72a022d7cf4.js"></script>
-    </article>
+      <article class="slide" id="real-example">
+        <h1>Real Example</h1>
+        <h2>(ember-exclaim ⚠️  demo intensifies)</h2>
+        <script src="https://gist.github.com/0xadada/b7e097762728f9c17ff5f72a022d7cf4.js"></script>
+      </article>
 
-    <article class="slide" id="sequence">
-      <h1>Sequence of events</h1>
-      <img src="sequence.svg" alt="enhanced content sequence diagram" style="background-color: white;">
-    </article>
+      <article class="slide" id="sequence">
+        <h1>Sequence of events</h1>
+        <img src="sequence.svg" alt="enhanced content sequence diagram" style="background-color: white;">
+      </article>
 
-    <article class="slide" id="fastguide">
-      <h1>FastGuide to FastBoot</h1>
-      <ol>
-        <li>
-          <code><pre>$ ember new my-project --yarn</pre></code>
-        </li>
-        <li>
-          <code><pre>$ ember install ember-cli-fastboot</pre></code>
-        </li>
-        <li>
-          <code><pre>
-$ yarn add -D fastboot-app-server
-          </pre></code>
-        </li>
-        <li>
-          <code><pre>$ node server.js</pre></code>
-        </li>
-      </ol>
-    </article>
+      <article class="slide" id="fastguide">
+        <h1>FastGuide to FastBoot</h1>
+        <ol>
+          <li>
+            <code><pre>$ ember new my-project --yarn</pre></code>
+          </li>
+          <li>
+            <code><pre>$ ember install ember-cli-fastboot</pre></code>
+          </li>
+          <li>
+            <code><pre>
+  $ yarn add -D fastboot-app-server
+            </pre></code>
+          </li>
+          <li>
+            <code><pre>$ node server.js</pre></code>
+          </li>
+        </ol>
+      </article>
 
-    <article class="slide" id="actual-code">
-      <h1>Lets see some code</h1>
-      <h2><code>server.js</code></h2>
-      <script src="https://gist.github.com/0xadada/04bddc6c5d459796a3b8f706417f78b0.js"></script>
-    </article>
+      <article class="slide" id="actual-code">
+        <h1>Lets see some code</h1>
+        <h2><code>server.js</code></h2>
+        <script src="https://gist.github.com/0xadada/04bddc6c5d459796a3b8f706417f78b0.js"></script>
+      </article>
 
-    <article class="slide" id="gotchas">
-      <h1>Gotchas</h1>
-      <ul>
-        <li>
-          Use
-          <code>
-            <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a></code>
-          in production 💣💥
-        </li>
-        <li>Your app is now running in two runtimes, the browser and the server.
-          <ul>
-            <li>your code may need to have branching conditions for the server runtime</li>
-            <li>No DOM on the server: no jQuery, no
-              <code>document</code>, no
-              <code>window</code> objects.
-            </li>
-            <li>Congrats🎉, you now have a new runtime to write tests for!</li>
-          </ul>
-        </li>
-        <li><code>ember-cli-fastboot-testing</code> for testing server FastBoot</li>
-        <li>Whitelist server dependencies in <code>package.json "dependencies"</code> block</li>
-        <li>Use Docker to host and deploy, it helps</li>
-      </ul>
-      <h3>Be aware of security vulnerabilities you never had to consider.</h3>
-    </article>
+      <article class="slide" id="gotchas">
+        <h1>Gotchas</h1>
+        <ul>
+          <li>
+            Use
+            <code>
+              <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a></code>
+            in production 💣💥
+          </li>
+          <li>Your app is now running in two runtimes, the browser and the server.
+            <ul>
+              <li>your code may need to have branching conditions for the server runtime</li>
+              <li>No DOM on the server: no jQuery, no
+                <code>document</code>, no
+                <code>window</code> objects.
+              </li>
+              <li>Congrats🎉, you now have a new runtime to write tests for!</li>
+            </ul>
+          </li>
+          <li><code>ember-cli-fastboot-testing</code> for testing server FastBoot</li>
+          <li>Whitelist server dependencies in <code>package.json "dependencies"</code> block</li>
+          <li>Use Docker to host and deploy, it helps</li>
+        </ul>
+        <h3>Be aware of security vulnerabilities you never had to consider.</h3>
+      </article>
 
-    <article class="slide" id="thanks">
-      <h1>Thanks 👋🙇‍♂️</h1>
-      <div>
-        <img src="https://github.com/rsocci.png" height="192">
-        <img src="https://github.com/dfreeman.png" height="192">
-        <img src="https://github.com/deverstalmage.png" height="192">
-        <img src="https://github.com/kmontag42.png" height="192">
-        <img src="kl.png" height="192">
-        <img src="ds.png" height="192">
-        <img src="https://github.com/skarger.png" height="192">
-      </div>
-    </article>
+      <article class="slide" id="thanks">
+        <h1>Thanks 👋🙇‍♂️</h1>
+        <div>
+          <img src="https://github.com/rsocci.png" height="192">
+          <img src="https://github.com/dfreeman.png" height="192">
+          <img src="https://github.com/deverstalmage.png" height="192">
+          <img src="https://github.com/kmontag42.png" height="192">
+          <img src="kl.png" height="192">
+          <img src="ds.png" height="192">
+          <img src="https://github.com/skarger.png" height="192">
+        </div>
+      </article>
 
-    <article class="slide" id="questions">
-      <h1>Questions? / Resources</h1>
-      <ul>
-        <li>
-          <a href="https://0xadada.pub/talk-using-ember-fastboot-in-weird-ways/">
-            Slides
-          </a>
-          <br>
-          https://0xadada.pub/talk-using-ember-fastboot-in-weird-ways/
-        </li>
-        <li>
-          <a href="https://www.ember-fastboot.com/">ember fastboot</a>
-        </li>
-        <li>
-          <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a>
-        </li>
-        <li>
-          Typeset in
-          <a href="https://mirai.audio/system-font-i18n-css/#about">system-font-i18n.css</a>
-          <br>
-          <code>$ npm home system-font-i18n-css</code>
-        </li>
-      </ul>
-    </article>
+      <article class="slide" id="questions">
+        <h1>Questions? / Resources</h1>
+        <ul>
+          <li>
+            <a href="https://0xadada.pub/talk-using-ember-fastboot-in-weird-ways/">
+              Slides
+            </a>
+            <br>
+            https://0xadada.pub/talk-using-ember-fastboot-in-weird-ways/
+          </li>
+          <li>
+            <a href="https://www.ember-fastboot.com/">ember fastboot</a>
+          </li>
+          <li>
+            <a href="https://github.com/ember-fastboot/fastboot-app-server">fastboot-app-server</a>
+          </li>
+          <li>
+            Typeset in
+            <a href="https://mirai.audio/system-font-i18n-css/#about">system-font-i18n.css</a>
+            <br>
+            <code>$ npm home system-font-i18n-css</code>
+          </li>
+        </ul>
+      </article>
+    </div>
   </body>
 </html>
