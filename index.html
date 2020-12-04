@@ -11,11 +11,7 @@
         margin: 0;
         padding: 0;
       }
-      .slides { 
-        overflow-y: scroll;
-        scroll-snap-type: y mandatory;
-      }
-
+      
       h1 { font-size: 5rem; }
       h2 { font-size: 3rem; }
       h3 { font-size: 2rem; }
@@ -36,7 +32,12 @@
       }
 
       img { max-width: 100%; }
-
+      
+      .slides { 
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+      }
+      
       .slide {
         border: 1rem solid transparent;
         height: calc(100vh - 4rem);
